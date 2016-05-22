@@ -16,10 +16,6 @@ import Signal               exposing (map, map2, foldp, merge)
 --PORTS
 port inputs : Signal UserInputs
 
-port outputs : Signal Int
-port outputs = 
-    
-
 type alias Step = 
     (Int, Int)
 
@@ -138,7 +134,6 @@ update action model =
                                     mean = 
                                         tempSum // length newResults
                                 in 
-                                    (
                                     { model 
                                         | point = {x = model.i, y = 0}
                                         , counter = 0
@@ -146,9 +141,7 @@ update action model =
                                         , results = model.results ++[model.counter]
                                         , trials = model.trials - 1
                                         , empiricalMean = mean
-                                    },
-                                    outputs mean
-                                    )
+                                    }
                             else    
                                 { model 
                                     | test = True }

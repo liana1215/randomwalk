@@ -1,0 +1,96 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.RemoteData = Elm.Exts.RemoteData || {};
+Elm.Exts.RemoteData.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.RemoteData = _elm.Exts.RemoteData || {};
+   if (_elm.Exts.RemoteData.values) return _elm.Exts.RemoteData.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Effects = Elm.Effects.make(_elm),
+   $Exts$Task = Elm.Exts.Task.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Task = Elm.Task.make(_elm);
+   var _op = {};
+   var isSuccess = function (data) {    var _p0 = data;if (_p0.ctor === "Success") {    return true;} else {    return false;}};
+   var withDefault = F2(function ($default,data) {    var _p1 = data;if (_p1.ctor === "Success") {    return _p1._0;} else {    return $default;}});
+   var Success = function (a) {    return {ctor: "Success",_0: a};};
+   var Failure = function (a) {    return {ctor: "Failure",_0: a};};
+   var fromResult = function (result) {    var _p2 = result;if (_p2.ctor === "Err") {    return Failure(_p2._0);} else {    return Success(_p2._0);}};
+   var asEffect = function (_p3) {    return A2($Effects.map,fromResult,$Exts$Task.asEffect(_p3));};
+   var Loading = {ctor: "Loading"};
+   var NotAsked = {ctor: "NotAsked"};
+   var map = F2(function (f,data) {
+      var _p4 = data;
+      switch (_p4.ctor)
+      {case "Success": return Success(f(_p4._0));
+         case "Failure": return Failure(_p4._0);
+         case "Loading": return Loading;
+         default: return NotAsked;}
+   });
+   var mapFailure = F2(function (f,data) {
+      var _p5 = data;
+      switch (_p5.ctor)
+      {case "Success": return Success(_p5._0);
+         case "Failure": return Failure(f(_p5._0));
+         case "Loading": return Loading;
+         default: return NotAsked;}
+   });
+   var mapBoth = F3(function (successFn,errorFn,data) {
+      var _p6 = data;
+      switch (_p6.ctor)
+      {case "Success": return Success(successFn(_p6._0));
+         case "Failure": return Failure(errorFn(_p6._0));
+         case "Loading": return Loading;
+         default: return NotAsked;}
+   });
+   var mappend = F2(function (a,b) {
+      var _p7 = {ctor: "_Tuple2",_0: a,_1: b};
+      _v6_5: do {
+         _v6_4: do {
+            _v6_3: do {
+               _v6_2: do {
+                  switch (_p7._0.ctor)
+                  {case "Success": switch (_p7._1.ctor)
+                       {case "Success": return Success({ctor: "_Tuple2",_0: _p7._0._0,_1: _p7._1._0});
+                          case "Failure": break _v6_2;
+                          case "NotAsked": break _v6_4;
+                          default: return Loading;}
+                     case "Failure": return Failure(_p7._0._0);
+                     case "NotAsked": switch (_p7._1.ctor)
+                       {case "Failure": break _v6_2;
+                          case "NotAsked": break _v6_3;
+                          case "Loading": break _v6_3;
+                          default: break _v6_3;}
+                     default: switch (_p7._1.ctor)
+                       {case "Failure": break _v6_2;
+                          case "NotAsked": break _v6_4;
+                          case "Loading": break _v6_5;
+                          default: break _v6_5;}}
+               } while (false);
+               return Failure(_p7._1._0);
+            } while (false);
+            return NotAsked;
+         } while (false);
+         return NotAsked;
+      } while (false);
+      return Loading;
+   });
+   return _elm.Exts.RemoteData.values = {_op: _op
+                                        ,fromResult: fromResult
+                                        ,withDefault: withDefault
+                                        ,asEffect: asEffect
+                                        ,mappend: mappend
+                                        ,map: map
+                                        ,isSuccess: isSuccess
+                                        ,mapFailure: mapFailure
+                                        ,mapBoth: mapBoth
+                                        ,NotAsked: NotAsked
+                                        ,Loading: Loading
+                                        ,Failure: Failure
+                                        ,Success: Success};
+};

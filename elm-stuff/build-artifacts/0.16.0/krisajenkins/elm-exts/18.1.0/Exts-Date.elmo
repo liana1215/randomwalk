@@ -1,0 +1,60 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Date = Elm.Exts.Date || {};
+Elm.Exts.Date.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Date = _elm.Exts.Date || {};
+   if (_elm.Exts.Date.values) return _elm.Exts.Date.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Date = Elm.Date.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm);
+   var _op = {};
+   var monthNumber = function (date) {
+      var _p0 = $Date.month(date);
+      switch (_p0.ctor)
+      {case "Jan": return 1;
+         case "Feb": return 2;
+         case "Mar": return 3;
+         case "Apr": return 4;
+         case "May": return 5;
+         case "Jun": return 6;
+         case "Jul": return 7;
+         case "Aug": return 8;
+         case "Sep": return 9;
+         case "Oct": return 10;
+         case "Nov": return 11;
+         default: return 12;}
+   };
+   var toISOString = function (d) {
+      return A2($Basics._op["++"],
+      A3($String.padLeft,2,_U.chr("0"),$Basics.toString($Date.year(d))),
+      A2($Basics._op["++"],
+      "-",
+      A2($Basics._op["++"],
+      A3($String.padLeft,2,_U.chr("0"),$Basics.toString(monthNumber(d))),
+      A2($Basics._op["++"],
+      "-",
+      A2($Basics._op["++"],
+      A3($String.padLeft,2,_U.chr("0"),$Basics.toString($Date.day(d))),
+      A2($Basics._op["++"],
+      "T",
+      A2($Basics._op["++"],
+      A3($String.padLeft,2,_U.chr("0"),$Basics.toString($Date.hour(d) - 1)),
+      A2($Basics._op["++"],
+      ":",
+      A2($Basics._op["++"],
+      A3($String.padLeft,2,_U.chr("0"),$Basics.toString($Date.minute(d))),
+      A2($Basics._op["++"],
+      ":",
+      A2($Basics._op["++"],
+      A3($String.padLeft,2,_U.chr("0"),$Basics.toString($Date.second(d))),
+      A2($Basics._op["++"],".",A2($Basics._op["++"],A3($String.padLeft,3,_U.chr("0"),$Basics.toString($Date.millisecond(d))),"Z")))))))))))));
+   };
+   return _elm.Exts.Date.values = {_op: _op,toISOString: toISOString};
+};

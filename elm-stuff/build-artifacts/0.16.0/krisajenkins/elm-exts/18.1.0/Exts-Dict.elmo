@@ -1,0 +1,36 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Dict = Elm.Exts.Dict || {};
+Elm.Exts.Dict.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Dict = _elm.Exts.Dict || {};
+   if (_elm.Exts.Dict.values) return _elm.Exts.Dict.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Dict = Elm.Dict.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var foldToList = F2(function (f,dict) {
+      return A3($Dict.foldr,F2(function (k,v) {    return F2(function (x,y) {    return A2($List._op["::"],x,y);})(A2(f,k,v));}),_U.list([]),dict);
+   });
+   var getWithDefault = F2(function (def,key) {    return function (_p0) {    return A2($Maybe.withDefault,def,A2($Dict.get,key,_p0));};});
+   var frequency = function () {
+      var updater = function (m) {    var _p1 = m;if (_p1.ctor === "Nothing") {    return $Maybe.Just(1);} else {    return $Maybe.Just(_p1._0 + 1);}};
+      var reducer = function (x) {    return A2($Dict.update,x,updater);};
+      return A2($List.foldl,reducer,$Dict.empty);
+   }();
+   var groupBy = function (f) {
+      var reducer = F3(function (g,x,d) {
+         var key = g(x);
+         var newValue = A2($List._op["::"],x,A2($Maybe.withDefault,_U.list([]),A2($Dict.get,key,d)));
+         return A3($Dict.insert,key,newValue,d);
+      });
+      return A2($List.foldl,reducer(f),$Dict.empty);
+   };
+   var indexBy = function (f) {    return A2($List.foldl,function (x) {    return A2($Dict.insert,f(x),x);},$Dict.empty);};
+   return _elm.Exts.Dict.values = {_op: _op,indexBy: indexBy,groupBy: groupBy,frequency: frequency,getWithDefault: getWithDefault,foldToList: foldToList};
+};

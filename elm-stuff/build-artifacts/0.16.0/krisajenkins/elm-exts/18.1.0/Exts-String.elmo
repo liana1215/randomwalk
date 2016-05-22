@@ -1,0 +1,19 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.String = Elm.Exts.String || {};
+Elm.Exts.String.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.String = _elm.Exts.String || {};
+   if (_elm.Exts.String.values) return _elm.Exts.String.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm);
+   var _op = {};
+   var removePrefix = F2(function (prefix,s) {    return A2($String.startsWith,prefix,s) ? A2($String.dropLeft,$String.length(prefix),s) : s;});
+   return _elm.Exts.String.values = {_op: _op,removePrefix: removePrefix};
+};

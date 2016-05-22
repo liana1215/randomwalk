@@ -1,0 +1,84 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Html = Elm.Exts.Html || {};
+Elm.Exts.Html.Bootstrap = Elm.Exts.Html.Bootstrap || {};
+Elm.Exts.Html.Bootstrap.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Html = _elm.Exts.Html || {};
+   _elm.Exts.Html.Bootstrap = _elm.Exts.Html.Bootstrap || {};
+   if (_elm.Exts.Html.Bootstrap.values) return _elm.Exts.Html.Bootstrap.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var Left = {ctor: "Left"};
+   var Bottom = {ctor: "Bottom"};
+   var Right = {ctor: "Right"};
+   var Top = {ctor: "Top"};
+   var video = F2(function (ratio,url) {
+      var ratioClass = function () {
+         var _p0 = ratio;
+         if (_p0.ctor === "SixteenByNine") {
+               return "embed-responsive-16by9";
+            } else {
+               return "embed-responsive-4by3";
+            }
+      }();
+      return A2($Html.div,
+      _U.list([]),
+      _U.list([A2($Html.h1,_U.list([]),_U.list([$Html.text("About")]))
+              ,A2($Html.div,
+              _U.list([$Html$Attributes.$class("embed-responsive")]),
+              _U.list([A2($Html.iframe,_U.list([$Html$Attributes.$class("embed-responsive-item"),$Html$Attributes.src(url)]),_U.list([]))]))]));
+   });
+   var FourByThree = {ctor: "FourByThree"};
+   var SixteenByNine = {ctor: "SixteenByNine"};
+   var empty = A2($Html.span,_U.list([]),_U.list([]));
+   var popover = F5(function (direction,isShown,styles,title,body) {
+      return A2($Html.div,
+      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "popover fade",_1: true}
+                                                  ,{ctor: "_Tuple2",_0: "in",_1: isShown}
+                                                  ,{ctor: "_Tuple2",_0: "top",_1: _U.eq(direction,Top)}
+                                                  ,{ctor: "_Tuple2",_0: "right",_1: _U.eq(direction,Right)}
+                                                  ,{ctor: "_Tuple2",_0: "bottom",_1: _U.eq(direction,Bottom)}
+                                                  ,{ctor: "_Tuple2",_0: "left",_1: _U.eq(direction,Left)}]))
+              ,$Html$Attributes.style(A2($Basics._op["++"],styles,_U.list([{ctor: "_Tuple2",_0: "display",_1: "block"}])))]),
+      _U.list([A2($Html.div,_U.list([$Html$Attributes.$class("arrow")]),_U.list([]))
+              ,function () {
+                 var _p1 = title;
+                 if (_p1.ctor === "Just") {
+                       return A2($Html.h3,_U.list([$Html$Attributes.$class("popover-title")]),_U.list([$Html.text(_p1._0)]));
+                    } else {
+                       return empty;
+                    }
+              }()
+              ,A2($Html.div,_U.list([$Html$Attributes.$class("popover-content")]),body)]));
+   });
+   var row = $Html.div(_U.list([$Html$Attributes.$class("row")]));
+   var twoColumns = F2(function (left,right) {
+      return row(_U.list([A2($Html.div,_U.list([$Html$Attributes.$class("col-xs-6")]),left)
+                         ,A2($Html.div,_U.list([$Html$Attributes.$class("col-xs-6")]),right)]));
+   });
+   var containerFluid = $Html.div(_U.list([$Html$Attributes.$class("container-fluid")]));
+   var container = $Html.div(_U.list([$Html$Attributes.$class("container")]));
+   return _elm.Exts.Html.Bootstrap.values = {_op: _op
+                                            ,container: container
+                                            ,containerFluid: containerFluid
+                                            ,row: row
+                                            ,empty: empty
+                                            ,twoColumns: twoColumns
+                                            ,video: video
+                                            ,popover: popover
+                                            ,SixteenByNine: SixteenByNine
+                                            ,FourByThree: FourByThree
+                                            ,Top: Top
+                                            ,Right: Right
+                                            ,Bottom: Bottom
+                                            ,Left: Left};
+};

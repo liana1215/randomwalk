@@ -1,0 +1,48 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Maybe = Elm.Exts.Maybe || {};
+Elm.Exts.Maybe.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Maybe = _elm.Exts.Maybe || {};
+   if (_elm.Exts.Maybe.values) return _elm.Exts.Maybe.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var catMaybes = function (xs) {
+      catMaybes: while (true) {
+         var _p0 = xs;
+         if (_p0.ctor === "[]") {
+               return _U.list([]);
+            } else {
+               if (_p0._0.ctor === "Nothing") {
+                     var _v1 = _p0._1;
+                     xs = _v1;
+                     continue catMaybes;
+                  } else {
+                     return A2($List._op["::"],_p0._0._0,catMaybes(_p0._1));
+                  }
+            }
+      }
+   };
+   var mappend = F2(function (a,b) {
+      var _p1 = {ctor: "_Tuple2",_0: a,_1: b};
+      if (_p1._0.ctor === "Nothing") {
+            return $Maybe.Nothing;
+         } else {
+            if (_p1._1.ctor === "Nothing") {
+                  return $Maybe.Nothing;
+               } else {
+                  return $Maybe.Just({ctor: "_Tuple2",_0: _p1._0._0,_1: _p1._1._0});
+               }
+         }
+   });
+   var maybe = F2(function ($default,f) {    return function (_p2) {    return A2($Maybe.withDefault,$default,A2($Maybe.map,f,_p2));};});
+   var isJust = function (x) {    var _p3 = x;if (_p3.ctor === "Just") {    return true;} else {    return false;}};
+   var isNothing = function (_p4) {    return $Basics.not(isJust(_p4));};
+   return _elm.Exts.Maybe.values = {_op: _op,isJust: isJust,isNothing: isNothing,maybe: maybe,mappend: mappend,catMaybes: catMaybes};
+};

@@ -1,0 +1,34 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Validation = Elm.Exts.Validation || {};
+Elm.Exts.Validation.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Validation = _elm.Exts.Validation || {};
+   if (_elm.Exts.Validation.values) return _elm.Exts.Validation.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Regex = Elm.Regex.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var emailRegex = $Regex.caseInsensitive($Regex.regex(".+@.+\\..+"));
+   var notBlank = F2(function (err,str) {
+      var _p0 = str;
+      if (_p0.ctor === "Nothing") {
+            return $Result.Err(err);
+         } else {
+            if (_p0._0 === "") {
+                  return $Result.Err(err);
+               } else {
+                  return $Result.Ok(_p0._0);
+               }
+         }
+   });
+   var required = function (err) {    return function (_p1) {    return A2($Maybe.withDefault,$Result.Err(err),A2($Maybe.map,$Result.Ok,_p1));};};
+   var apply = F2(function (f,aResult) {    return A2($Result.andThen,f,function (f$) {    return A2($Result.map,f$,aResult);});});
+   _op["|:"] = apply;
+   return _elm.Exts.Validation.values = {_op: _op,apply: apply,required: required,notBlank: notBlank,emailRegex: emailRegex};
+};

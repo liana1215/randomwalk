@@ -1,0 +1,34 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Result = Elm.Exts.Result || {};
+Elm.Exts.Result.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Result = _elm.Exts.Result || {};
+   if (_elm.Exts.Result.values) return _elm.Exts.Result.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var mappend = F2(function (a,b) {
+      var _p0 = {ctor: "_Tuple2",_0: a,_1: b};
+      if (_p0._0.ctor === "Err") {
+            return $Result.Err(_p0._0._0);
+         } else {
+            if (_p0._1.ctor === "Err") {
+                  return $Result.Err(_p0._1._0);
+               } else {
+                  return $Result.Ok({ctor: "_Tuple2",_0: _p0._0._0,_1: _p0._1._0});
+               }
+         }
+   });
+   var fromErr = function (x) {    var _p1 = x;if (_p1.ctor === "Err") {    return $Maybe.Just(_p1._0);} else {    return $Maybe.Nothing;}};
+   var fromOk = function (x) {    var _p2 = x;if (_p2.ctor === "Ok") {    return $Maybe.Just(_p2._0);} else {    return $Maybe.Nothing;}};
+   var isOk = function (x) {    var _p3 = x;if (_p3.ctor === "Ok") {    return true;} else {    return false;}};
+   var isErr = function (_p4) {    return $Basics.not(isOk(_p4));};
+   var mapBoth = F3(function (f,g,r) {    var _p5 = r;if (_p5.ctor === "Ok") {    return $Result.Ok(g(_p5._0));} else {    return $Result.Err(f(_p5._0));}});
+   return _elm.Exts.Result.values = {_op: _op,mapBoth: mapBoth,isOk: isOk,isErr: isErr,fromOk: fromOk,fromErr: fromErr,mappend: mappend};
+};

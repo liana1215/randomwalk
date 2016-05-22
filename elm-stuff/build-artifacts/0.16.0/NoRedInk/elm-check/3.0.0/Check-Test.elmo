@@ -1,0 +1,44 @@
+Elm.Check = Elm.Check || {};
+Elm.Check.Test = Elm.Check.Test || {};
+Elm.Check.Test.make = function (_elm) {
+   "use strict";
+   _elm.Check = _elm.Check || {};
+   _elm.Check.Test = _elm.Check.Test || {};
+   if (_elm.Check.Test.values) return _elm.Check.Test.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Check = Elm.Check.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $ElmTest = Elm.ElmTest.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var nChecks = function (n) {    return _U.eq(n,1) ? "1 check" : A2($Basics._op["++"],$Basics.toString(n)," checks");};
+   var evidenceToTest = function (evidence) {
+      var _p0 = evidence;
+      if (_p0.ctor === "Multiple") {
+            return A2($ElmTest.suite,_p0._0,A2($List.map,evidenceToTest,_p0._1));
+         } else {
+            if (_p0._0.ctor === "Ok") {
+                  return A2($ElmTest.test,
+                  A2($Basics._op["++"],_p0._0._0.name,A2($Basics._op["++"]," [",A2($Basics._op["++"],nChecks(_p0._0._0.numberOfChecks),"]"))),
+                  $ElmTest.pass);
+               } else {
+                  return A2($ElmTest.test,
+                  _p0._0._0.name,
+                  $ElmTest.fail(A2($Basics._op["++"],
+                  "\nOn check ",
+                  A2($Basics._op["++"],
+                  $Basics.toString(_p0._0._0.numberOfChecks),
+                  A2($Basics._op["++"],
+                  ", found counterexample: ",
+                  A2($Basics._op["++"],
+                  _p0._0._0.counterExample,
+                  A2($Basics._op["++"],"\nExpected:   ",A2($Basics._op["++"],_p0._0._0.expected,A2($Basics._op["++"],"\nBut It Was: ",_p0._0._0.actual)))))))));
+               }
+         }
+   };
+   return _elm.Check.Test.values = {_op: _op,evidenceToTest: evidenceToTest};
+};

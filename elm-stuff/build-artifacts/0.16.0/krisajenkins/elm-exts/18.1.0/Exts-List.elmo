@@ -1,0 +1,56 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.List = Elm.Exts.List || {};
+Elm.Exts.List.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.List = _elm.Exts.List || {};
+   if (_elm.Exts.List.values) return _elm.Exts.List.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Array = Elm.Array.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Dict = Elm.Dict.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Trampoline = Elm.Trampoline.make(_elm);
+   var _op = {};
+   var rest = function (_p0) {    return A2($Maybe.withDefault,_U.list([]),$List.tail(_p0));};
+   var firstMatch = F2(function (predicate,items) {
+      firstMatch: while (true) {
+         var _p1 = items;
+         if (_p1.ctor === "[]") {
+               return $Maybe.Nothing;
+            } else {
+               var _p2 = _p1._0;
+               if (predicate(_p2)) return $Maybe.Just(_p2); else {
+                     var _v1 = predicate,_v2 = _p1._1;
+                     predicate = _v1;
+                     items = _v2;
+                     continue firstMatch;
+                  }
+            }
+      }
+   });
+   var singleton = function (x) {    return _U.list([x]);};
+   var maybeSingleton = function (_p3) {    return A2($Maybe.withDefault,_U.list([]),A2($Maybe.map,singleton,_p3));};
+   var mergeBy = F3(function (f,xs,ys) {
+      var reducer = F2(function (v,acc) {    return A3($Dict.insert,f(v),v,acc);});
+      return $Dict.values(A3($List.foldl,reducer,$Dict.empty,A2($Basics._op["++"],xs,ys)));
+   });
+   var chunk$ = F3(function (n,xs,accum) {
+      return $List.isEmpty(xs) ? $Trampoline.Done($Array.toList(accum)) : $Trampoline.Continue(function (_p4) {
+         var _p5 = _p4;
+         return A3(chunk$,n,A2($List.drop,n,xs),A2($Array.push,A2($List.take,n,xs),accum));
+      });
+   });
+   var chunk = F2(function (n,xs) {    return _U.cmp(n,1) < 0 ? singleton(xs) : $Trampoline.trampoline(A3(chunk$,n,xs,$Array.empty));});
+   return _elm.Exts.List.values = {_op: _op
+                                  ,chunk: chunk
+                                  ,mergeBy: mergeBy
+                                  ,singleton: singleton
+                                  ,maybeSingleton: maybeSingleton
+                                  ,firstMatch: firstMatch
+                                  ,rest: rest};
+};

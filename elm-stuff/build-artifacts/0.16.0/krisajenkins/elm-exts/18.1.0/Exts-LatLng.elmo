@@ -1,0 +1,32 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.LatLng = Elm.Exts.LatLng || {};
+Elm.Exts.LatLng.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.LatLng = _elm.Exts.LatLng || {};
+   if (_elm.Exts.LatLng.values) return _elm.Exts.LatLng.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var bearingTo = F2(function (a,b) {
+      var dlon = $Basics.degrees(b.longitude) - $Basics.degrees(a.longitude);
+      var y = $Basics.sin(dlon) * $Basics.cos($Basics.degrees(b.latitude));
+      var x = $Basics.cos($Basics.degrees(a.latitude)) * $Basics.sin($Basics.degrees(b.latitude)) - $Basics.sin($Basics.degrees(a.latitude)) * $Basics.cos($Basics.degrees(b.latitude)) * $Basics.cos(dlon);
+      var bearing = A2($Basics.atan2,y,x) * (180 / $Basics.pi);
+      return bearing;
+   });
+   var distanceBetween = F2(function (a,b) {
+      var dlng = $Basics.degrees(b.longitude - a.longitude);
+      var dlat = $Basics.degrees(b.latitude - a.latitude);
+      var v1 = $Basics.sin(dlat / 2) * $Basics.sin(dlat / 2) + $Basics.cos($Basics.degrees(a.latitude)) * $Basics.cos($Basics.degrees(b.latitude)) * $Basics.sin(dlng / 2) * $Basics.sin(dlng / 2);
+      var v2 = 2 * A2($Basics.atan2,$Basics.sqrt(v1),$Basics.sqrt(1 - v1));
+      var earthRadius = 6371;
+      return earthRadius * v2;
+   });
+   return _elm.Exts.LatLng.values = {_op: _op,distanceBetween: distanceBetween,bearingTo: bearingTo};
+};

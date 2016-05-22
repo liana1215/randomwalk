@@ -1,0 +1,38 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Html = Elm.Exts.Html || {};
+Elm.Exts.Html.Table = Elm.Exts.Html.Table || {};
+Elm.Exts.Html.Table.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Html = _elm.Exts.Html || {};
+   _elm.Exts.Html.Table = _elm.Exts.Html.Table || {};
+   if (_elm.Exts.Html.Table.values) return _elm.Exts.Html.Table.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var valueGroup = F2(function (fs,x) {
+      return A2($Html.div,_U.list([]),A2($List.map,function (f) {    return A2($Html.div,_U.list([]),_U.list([f(x)]));},fs));
+   });
+   var titleGroup = function (strings) {
+      return A2($Html.div,_U.list([]),A2($List.map,function (s) {    return A2($Html.div,_U.list([]),_U.list([$Html.text(s)]));},strings));
+   };
+   var simpleTableRow = F2(function (tableDef,item) {
+      return A2($Html.tr,_U.list([]),A2($List.map,function (_p0) {    var _p1 = _p0;return A2($Html.td,_U.list([]),_U.list([_p1._1(item)]));},tableDef));
+   });
+   var simpleTable = F2(function (tableDef,items) {
+      return A2($Html.table,
+      _U.list([$Html$Attributes.$class("table table-bordered table-hover")]),
+      _U.list([A2($Html.thead,
+              _U.list([]),
+              _U.list([A2($Html.tr,_U.list([]),A2($List.map,function (_p2) {    var _p3 = _p2;return A2($Html.th,_U.list([]),_U.list([_p3._0]));},tableDef))]))
+              ,A2($Html.tbody,_U.list([]),A2($List.map,simpleTableRow(tableDef),items))]));
+   });
+   return _elm.Exts.Html.Table.values = {_op: _op,simpleTable: simpleTable,simpleTableRow: simpleTableRow,titleGroup: titleGroup,valueGroup: valueGroup};
+};

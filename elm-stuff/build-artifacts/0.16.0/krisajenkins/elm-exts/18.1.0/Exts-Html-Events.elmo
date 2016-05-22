@@ -1,0 +1,42 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Html = Elm.Exts.Html || {};
+Elm.Exts.Html.Events = Elm.Exts.Html.Events || {};
+Elm.Exts.Html.Events.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Html = _elm.Exts.Html || {};
+   _elm.Exts.Html.Events = _elm.Exts.Html.Events || {};
+   if (_elm.Exts.Html.Events.values) return _elm.Exts.Html.Events.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Events = Elm.Html.Events.make(_elm),
+   $Json$Decode = Elm.Json.Decode.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var onInput = F2(function (address,f) {
+      return A3($Html$Events.on,"input",$Html$Events.targetValue,function (_p0) {    return A2($Signal.message,address,f(_p0));});
+   });
+   var emptyIsNothing = function (s) {    return _U.eq(s,"") ? $Maybe.Nothing : $Maybe.Just(s);};
+   var maybeTargetValue = A2($Json$Decode.map,emptyIsNothing,$Html$Events.targetValue);
+   var onSelect = F2(function (address,f) {
+      return A3($Html$Events.on,"change",maybeTargetValue,function (_p1) {    return A2($Signal.message,address,f(_p1));});
+   });
+   var onCheckbox = F2(function (address,$function) {
+      return A3($Html$Events.on,"change",$Html$Events.targetChecked,function (_p2) {    return A2($Signal.message,address,$function(_p2));});
+   });
+   var keyCodeIs = F2(function (expected,actual) {    return _U.eq(expected,actual) ? $Result.Ok({ctor: "_Tuple0"}) : $Result.Err("Not the right key code");});
+   var enterKey = keyCodeIs(13);
+   var onEnter = function (message) {
+      return A4($Html$Events.onWithOptions,
+      "keydown",
+      {preventDefault: true,stopPropagation: false},
+      A2($Json$Decode.customDecoder,$Html$Events.keyCode,enterKey),
+      $Basics.always(message));
+   };
+   return _elm.Exts.Html.Events.values = {_op: _op,onEnter: onEnter,onCheckbox: onCheckbox,onSelect: onSelect,onInput: onInput};
+};

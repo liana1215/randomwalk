@@ -1,0 +1,29 @@
+Elm.Focus = Elm.Focus || {};
+Elm.Focus.make = function (_elm) {
+   "use strict";
+   _elm.Focus = _elm.Focus || {};
+   if (_elm.Focus.values) return _elm.Focus.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var update = F3(function (_p0,f,big) {    var _p1 = _p0;return A2(_p1._0.update,f,big);});
+   var set = F3(function (_p2,small,big) {    var _p3 = _p2;return A2(_p3._0.update,$Basics.always(small),big);});
+   var get = F2(function (_p4,big) {    var _p5 = _p4;return _p5._0.get(big);});
+   var Focus = function (a) {    return {ctor: "Focus",_0: a};};
+   var create = F2(function (get,update) {    return Focus({get: get,update: update});});
+   _op["=>"] = F2(function (_p7,_p6) {
+      var _p8 = _p7;
+      var _p11 = _p8._0;
+      var _p9 = _p6;
+      var _p10 = _p9._0;
+      var update = F2(function (f,big) {    return A2(_p11.update,_p10.update(f),big);});
+      var get = function (big) {    return _p10.get(_p11.get(big));};
+      return Focus({get: get,update: update});
+   });
+   return _elm.Focus.values = {_op: _op,get: get,set: set,update: update,create: create};
+};

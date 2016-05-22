@@ -1,0 +1,106 @@
+Elm.RandomWalk = Elm.RandomWalk || {};
+Elm.RandomWalk.make = function (_elm) {
+   "use strict";
+   _elm.RandomWalk = _elm.RandomWalk || {};
+   if (_elm.RandomWalk.values) return _elm.RandomWalk.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $Html$Events = Elm.Html.Events.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $StartApp$Simple = Elm.StartApp.Simple.make(_elm),
+   $String = Elm.String.make(_elm),
+   $Walker = Elm.Walker.make(_elm);
+   var _op = {};
+   var onInput = F2(function (address,f) {
+      return A3($Html$Events.on,"input",$Html$Events.targetValue,function (v) {    return A2($Signal.message,address,f(v));});
+   });
+   var pageFooter = A2($Html.footer,_U.list([]),_U.list([]));
+   var title = function (s) {    return $Html.text($String.trimRight(s));};
+   var pageHeader = A2($Html.h1,_U.list([]),_U.list([title("Random Walk with Reflecting Boundries")]));
+   var UpdatePoint = function (a) {    return {ctor: "UpdatePoint",_0: a};};
+   var walker = A2($Signal.map,function (step) {    return UpdatePoint(step);},$Walker.randomWalk);
+   var Submit = {ctor: "Submit"};
+   var Updatetrials = function (a) {    return {ctor: "Updatetrials",_0: a};};
+   var Updaten = function (a) {    return {ctor: "Updaten",_0: a};};
+   var Updatei = function (a) {    return {ctor: "Updatei",_0: a};};
+   var entryForm = F2(function (address,model) {
+      return A2($Html.div,
+      _U.list([]),
+      _U.list([A2($Html.input,
+              _U.list([$Html$Attributes.type$("number")
+                      ,$Html$Attributes.placeholder("i")
+                      ,$Html$Attributes.value(model.i)
+                      ,$Html$Attributes.name("i")
+                      ,$Html$Attributes.autofocus(true)
+                      ,$Html$Attributes.required(true)
+                      ,A2(onInput,address,Updatei)]),
+              _U.list([]))
+              ,A2($Html.input,
+              _U.list([$Html$Attributes.type$("number")
+                      ,$Html$Attributes.placeholder("n")
+                      ,$Html$Attributes.value(model.n)
+                      ,$Html$Attributes.name("n")
+                      ,$Html$Attributes.autofocus(true)
+                      ,$Html$Attributes.required(true)
+                      ,A2(onInput,address,Updaten)]),
+              _U.list([]))
+              ,A2($Html.input,
+              _U.list([$Html$Attributes.type$("number")
+                      ,$Html$Attributes.placeholder("trials")
+                      ,$Html$Attributes.value(model.trials)
+                      ,$Html$Attributes.name("trials")
+                      ,$Html$Attributes.autofocus(true)
+                      ,$Html$Attributes.required(true)
+                      ,A2(onInput,address,Updatetrials)]),
+              _U.list([]))
+              ,A2($Html.button,_U.list([$Html$Attributes.$class("add"),A2($Html$Events.onClick,address,Submit)]),_U.list([$Html.text("Submit")]))]));
+   });
+   var view = F2(function (address,model) {
+      return A2($Html.div,_U.list([$Html$Attributes.id("container")]),_U.list([pageHeader,A2(entryForm,address,model),pageFooter]));
+   });
+   var NoOp = {ctor: "NoOp"};
+   var initialModel = {i: "",n: "",trials: "",point: {x: 0,y: 0}};
+   var update = F2(function (action,m) {
+      var _p0 = action;
+      switch (_p0.ctor)
+      {case "NoOp": return m;
+         case "Updatei": return _U.update(m,{i: _p0._0});
+         case "Updaten": return _U.update(m,{n: _p0._0});
+         case "Updatetrials": return _U.update(m,{trials: _p0._0});
+         case "Submit": return initialModel;
+         default: var _p1 = _p0._0._0;
+           var pt = m.point;
+           return _U.eq(pt.x,0) ? _U.cmp(_p1,0) < 0 ? _U.update(m,{point: {x: pt.x,y: pt.y}}) : _U.update(m,{point: {x: pt.x + _p1,y: pt.y}}) : _U.update(m,
+           {point: {x: pt.x + _p1,y: pt.y}});}
+   });
+   var model = A3($Signal.foldp,update,initialModel,walker);
+   var main = $StartApp$Simple.start({model: initialModel,view: view,update: update});
+   var Model = F4(function (a,b,c,d) {    return {i: a,n: b,trials: c,point: d};});
+   var Point = F2(function (a,b) {    return {x: a,y: b};});
+   return _elm.RandomWalk.values = {_op: _op
+                                   ,Point: Point
+                                   ,Model: Model
+                                   ,initialModel: initialModel
+                                   ,NoOp: NoOp
+                                   ,Updatei: Updatei
+                                   ,Updaten: Updaten
+                                   ,Updatetrials: Updatetrials
+                                   ,Submit: Submit
+                                   ,UpdatePoint: UpdatePoint
+                                   ,update: update
+                                   ,title: title
+                                   ,pageHeader: pageHeader
+                                   ,pageFooter: pageFooter
+                                   ,onInput: onInput
+                                   ,entryForm: entryForm
+                                   ,walker: walker
+                                   ,model: model
+                                   ,view: view
+                                   ,main: main};
+};

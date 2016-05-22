@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Randomwalk</title>
+  <script type="text/javascript" src="randombundle.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+    <h1> Random Walk with Reflecting Boundries </h1>
+        <form onsubmit="return sendComment(this);">
+            <input placeholder = "trials" id="trials" type="number" required>
+            <input placeholder = "n" id="n" type="number" required>
+            <input placeholder = "i" id="i" type="number" required>
+            <input type="submit" name="button" id="button" required>
+        </form>
+        <p id="message">&nbsp;</p>
+
+        <div style="height:1000px; width: 1000px;" id="walker"></div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    var walkerDiv = document.getElementById("walker");
+    var app = Elm.embed(Elm.Walker, walkerDiv, {inputs: {n:0, i:0, trials:0}})    
+    var n = 10;
+    var i = 5;
+    var trials = 100;
+    var mean = 80;
+
+    function sendComment(form) {
+        n = parseInt(form.n.value)
+        i = parseInt(form.i.value)
+        trials = parseInt(form.trials.value)
+        mean = n + (n * n) - i - (i * i);
+        
+        if (n < i) {
+            text = "'n' needs to be greater than 'i'."
+        } else {
+            if (n > 30) {
+                text = "'n' is too large, needs to be less than 530." 
+            } else {
+                app.ports.inputs.send({n: n, i: i, trials: trials});
+                form.reset();
+                text = "&nbsp";
+            }
+        } 
+        document.getElementById("message").innerHTML = text;
+        return false;
+    }
+
+
+</script>
+
+</html>
+~                                                                                                                                                                                                            
+~                                                                                                                                                                                                            
+~             

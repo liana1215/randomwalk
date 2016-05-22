@@ -1,0 +1,37 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Html = Elm.Exts.Html || {};
+Elm.Exts.Html.Attributes = Elm.Exts.Html.Attributes || {};
+Elm.Exts.Html.Attributes.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Html = _elm.Exts.Html || {};
+   _elm.Exts.Html.Attributes = _elm.Exts.Html.Attributes || {};
+   if (_elm.Exts.Html.Attributes.values) return _elm.Exts.Html.Attributes.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $Json$Encode = Elm.Json.Encode.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var styleList = function () {
+      var withActive = function (_p0) {    var _p1 = _p0;return _p1._2 ? $Maybe.Just({ctor: "_Tuple2",_0: _p1._0,_1: _p1._1}) : $Maybe.Nothing;};
+      return function (_p2) {
+         return $Html$Attributes.style(A2($List.filterMap,withActive,_p2));
+      };
+   }();
+   var defaultValue = $Html$Attributes.property("defaultValue");
+   var defaultString = function (_p3) {    return defaultValue($Json$Encode.string(_p3));};
+   var defaultInt = function (_p4) {    return defaultValue($Json$Encode.$int(_p4));};
+   var defaultFloat = function (_p5) {    return defaultValue($Json$Encode.$float(_p5));};
+   return _elm.Exts.Html.Attributes.values = {_op: _op
+                                             ,defaultValue: defaultValue
+                                             ,defaultString: defaultString
+                                             ,defaultInt: defaultInt
+                                             ,defaultFloat: defaultFloat
+                                             ,styleList: styleList};
+};

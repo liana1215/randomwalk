@@ -1,0 +1,826 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Html = Elm.Exts.Html || {};
+Elm.Exts.Html.Bootstrap = Elm.Exts.Html.Bootstrap || {};
+Elm.Exts.Html.Bootstrap.Glyphicons = Elm.Exts.Html.Bootstrap.Glyphicons || {};
+Elm.Exts.Html.Bootstrap.Glyphicons.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Html = _elm.Exts.Html || {};
+   _elm.Exts.Html.Bootstrap = _elm.Exts.Html.Bootstrap || {};
+   _elm.Exts.Html.Bootstrap.Glyphicons = _elm.Exts.Html.Bootstrap.Glyphicons || {};
+   if (_elm.Exts.Html.Bootstrap.Glyphicons.values) return _elm.Exts.Html.Bootstrap.Glyphicons.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var glyphiconClass = function (icon) {
+      return A2($Basics._op["++"],
+      "glyphicon-",
+      function () {
+         var _p0 = icon;
+         switch (_p0.ctor)
+         {case "Asterisk": return "asterisk";
+            case "Plus": return "plus";
+            case "Euro": return "euro";
+            case "Eur": return "eur";
+            case "Minus": return "minus";
+            case "Cloud": return "cloud";
+            case "Envelope": return "envelope";
+            case "Pencil": return "pencil";
+            case "Glass": return "glass";
+            case "Music": return "music";
+            case "Search": return "search";
+            case "Heart": return "heart";
+            case "Star": return "star";
+            case "StarEmpty": return "star-empty";
+            case "User": return "user";
+            case "Film": return "film";
+            case "ThLarge": return "th-large";
+            case "Th": return "th";
+            case "ThList": return "th-list";
+            case "Ok": return "ok";
+            case "Remove": return "remove";
+            case "ZoomIn": return "zoom-in";
+            case "ZoomOut": return "zoom-out";
+            case "Off": return "off";
+            case "Signal": return "signal";
+            case "Cog": return "cog";
+            case "Trash": return "trash";
+            case "Home": return "home";
+            case "File": return "file";
+            case "Time": return "time";
+            case "Road": return "road";
+            case "DownloadAlt": return "download-alt";
+            case "Download": return "download";
+            case "Upload": return "upload";
+            case "Inbox": return "inbox";
+            case "PlayCircle": return "play-circle";
+            case "Repeat": return "repeat";
+            case "Refresh": return "refresh";
+            case "ListAlt": return "list-alt";
+            case "Lock": return "lock";
+            case "Flag": return "flag";
+            case "Headphones": return "headphones";
+            case "VolumeOff": return "volume-off";
+            case "VolumeDown": return "volume-down";
+            case "VolumeUp": return "volume-up";
+            case "Qrcode": return "qrcode";
+            case "Barcode": return "barcode";
+            case "Tag": return "tag";
+            case "Tags": return "tags";
+            case "Book": return "book";
+            case "Bookmark": return "bookmark";
+            case "Print": return "print";
+            case "Camera": return "camera";
+            case "Font": return "font";
+            case "Bold": return "bold";
+            case "Italic": return "italic";
+            case "TextHeight": return "text-height";
+            case "TextWidth": return "text-width";
+            case "AlignLeft": return "align-left";
+            case "AlignCenter": return "align-center";
+            case "AlignRight": return "align-right";
+            case "AlignJustify": return "align-justify";
+            case "List": return "list";
+            case "IndentLeft": return "indent-left";
+            case "IndentRight": return "indent-right";
+            case "FacetimeVideo": return "facetime-video";
+            case "Picture": return "picture";
+            case "MapMarker": return "map-marker";
+            case "Adjust": return "adjust";
+            case "Tint": return "tint";
+            case "Edit": return "edit";
+            case "Share": return "share";
+            case "Check": return "check";
+            case "Move": return "move";
+            case "StepBackward": return "step-backward";
+            case "FastBackward": return "fast-backward";
+            case "Backward": return "backward";
+            case "Play": return "play";
+            case "Pause": return "pause";
+            case "Stop": return "stop";
+            case "Forward": return "forward";
+            case "FastForward": return "fast-forward";
+            case "StepForward": return "step-forward";
+            case "Eject": return "eject";
+            case "ChevronLeft": return "chevron-left";
+            case "ChevronRight": return "chevron-right";
+            case "PlusSign": return "plus-sign";
+            case "MinusSign": return "minus-sign";
+            case "RemoveSign": return "remove-sign";
+            case "OkSign": return "ok-sign";
+            case "QuestionSign": return "question-sign";
+            case "InfoSign": return "info-sign";
+            case "Screenshot": return "screenshot";
+            case "RemoveCircle": return "remove-circle";
+            case "OkCircle": return "ok-circle";
+            case "BanCircle": return "ban-circle";
+            case "ArrowLeft": return "arrow-left";
+            case "ArrowRight": return "arrow-right";
+            case "ArrowUp": return "arrow-up";
+            case "ArrowDown": return "arrow-down";
+            case "ShareAlt": return "share-alt";
+            case "ResizeFull": return "resize-full";
+            case "ResizeSmall": return "resize-small";
+            case "ExclamationSign": return "exclamation-sign";
+            case "Gift": return "gift";
+            case "Leaf": return "leaf";
+            case "Fire": return "fire";
+            case "EyeOpen": return "eye-open";
+            case "EyeClose": return "eye-close";
+            case "WarningSign": return "warning-sign";
+            case "Plane": return "plane";
+            case "Calendar": return "calendar";
+            case "Random": return "random";
+            case "Comment": return "comment";
+            case "Magnet": return "magnet";
+            case "ChevronUp": return "chevron-up";
+            case "ChevronDown": return "chevron-down";
+            case "Retweet": return "retweet";
+            case "ShoppingCart": return "shopping-cart";
+            case "FolderClose": return "folder-close";
+            case "FolderOpen": return "folder-open";
+            case "ResizeVertical": return "resize-vertical";
+            case "ResizeHorizontal": return "resize-horizontal";
+            case "Hdd": return "hdd";
+            case "Bullhorn": return "bullhorn";
+            case "Bell": return "bell";
+            case "Certificate": return "certificate";
+            case "ThumbsUp": return "thumbs-up";
+            case "ThumbsDown": return "thumbs-down";
+            case "HandRight": return "hand-right";
+            case "HandLeft": return "hand-left";
+            case "HandUp": return "hand-up";
+            case "HandDown": return "hand-down";
+            case "CircleArrowRight": return "circle-arrow-right";
+            case "CircleArrowLeft": return "circle-arrow-left";
+            case "CircleArrowUp": return "circle-arrow-up";
+            case "CircleArrowDown": return "circle-arrow-down";
+            case "Globe": return "globe";
+            case "Wrench": return "wrench";
+            case "Tasks": return "tasks";
+            case "Filter": return "filter";
+            case "Briefcase": return "briefcase";
+            case "Fullscreen": return "fullscreen";
+            case "Dashboard": return "dashboard";
+            case "Paperclip": return "paperclip";
+            case "HeartEmpty": return "heart-empty";
+            case "Link": return "link";
+            case "Phone": return "phone";
+            case "Pushpin": return "pushpin";
+            case "Usd": return "usd";
+            case "Gbp": return "gbp";
+            case "Sort": return "sort";
+            case "SortByAlphabet": return "sort-by-alphabet";
+            case "SortByAlphabetAlt": return "sort-by-alphabet-alt";
+            case "SortByOrder": return "sort-by-order";
+            case "SortByOrderAlt": return "sort-by-order-alt";
+            case "SortByAttributes": return "sort-by-attributes";
+            case "SortByAttributesAlt": return "sort-by-attributes-alt";
+            case "Unchecked": return "unchecked";
+            case "Expand": return "expand";
+            case "CollapseDown": return "collapse-down";
+            case "CollapseUp": return "collapse-up";
+            case "LogIn": return "log-in";
+            case "Flash": return "flash";
+            case "LogOut": return "log-out";
+            case "NewWindow": return "new-window";
+            case "Record": return "record";
+            case "Save": return "save";
+            case "Open": return "open";
+            case "Saved": return "saved";
+            case "Import": return "import";
+            case "Export": return "export";
+            case "Send": return "send";
+            case "FloppyDisk": return "floppy-disk";
+            case "FloppySaved": return "floppy-saved";
+            case "FloppyRemove": return "floppy-remove";
+            case "FloppySave": return "floppy-save";
+            case "FloppyOpen": return "floppy-open";
+            case "CreditCard": return "credit-card";
+            case "Transfer": return "transfer";
+            case "Cutlery": return "cutlery";
+            case "Header": return "header";
+            case "Compressed": return "compressed";
+            case "Earphone": return "earphone";
+            case "PhoneAlt": return "phone-alt";
+            case "Tower": return "tower";
+            case "Stats": return "stats";
+            case "SdVideo": return "sd-video";
+            case "HdVideo": return "hd-video";
+            case "Subtitles": return "subtitles";
+            case "SoundStereo": return "sound-stereo";
+            case "SoundDolby": return "sound-dolby";
+            case "Sound51": return "sound-5-1";
+            case "Sound61": return "sound-6-1";
+            case "Sound71": return "sound-7-1";
+            case "CopyrightMark": return "copyright-mark";
+            case "RegistrationMark": return "registration-mark";
+            case "CloudDownload": return "cloud-download";
+            case "CloudUpload": return "cloud-upload";
+            case "TreeConifer": return "tree-conifer";
+            case "TreeDeciduous": return "tree-deciduous";
+            case "Cd": return "cd";
+            case "SaveFile": return "save-file";
+            case "OpenFile": return "open-file";
+            case "LevelUp": return "level-up";
+            case "Copy": return "copy";
+            case "Paste": return "paste";
+            case "Alert": return "alert";
+            case "Equalizer": return "equalizer";
+            case "King": return "king";
+            case "Queen": return "queen";
+            case "Pawn": return "pawn";
+            case "Bishop": return "bishop";
+            case "Knight": return "knight";
+            case "BabyFormula": return "baby-formula";
+            case "Tent": return "tent";
+            case "Blackboard": return "blackboard";
+            case "Bed": return "bed";
+            case "Apple": return "apple";
+            case "Erase": return "erase";
+            case "Hourglass": return "hourglass";
+            case "Lamp": return "lamp";
+            case "Duplicate": return "duplicate";
+            case "PiggyBank": return "piggy-bank";
+            case "Scissors": return "scissors";
+            case "Bitcoin": return "bitcoin";
+            case "Btc": return "btc";
+            case "Xbt": return "xbt";
+            case "Yen": return "yen";
+            case "Jpy": return "jpy";
+            case "Ruble": return "ruble";
+            case "Rub": return "rub";
+            case "Scale": return "scale";
+            case "IceLolly": return "ice-lolly";
+            case "IceLollyTasted": return "ice-lolly-tasted";
+            case "Education": return "education";
+            case "OptionHorizontal": return "option-horizontal";
+            case "OptionVertical": return "option-vertical";
+            case "MenuHamburger": return "menu-hamburger";
+            case "ModalWindow": return "modal-window";
+            case "Oil": return "oil";
+            case "Grain": return "grain";
+            case "Sunglasses": return "sunglasses";
+            case "TextSize": return "text-size";
+            case "TextColor": return "text-color";
+            case "TextBackground": return "text-background";
+            case "ObjectAlignTop": return "object-align-top";
+            case "ObjectAlignBottom": return "object-align-bottom";
+            case "ObjectAlignHorizontal": return "object-align-horizontal";
+            case "ObjectAlignLeft": return "object-align-left";
+            case "ObjectAlignVertical": return "object-align-vertical";
+            case "ObjectAlignRight": return "object-align-right";
+            case "TriangleRight": return "triangle-right";
+            case "TriangleLeft": return "triangle-left";
+            case "TriangleBottom": return "triangle-bottom";
+            case "TriangleTop": return "triangle-top";
+            case "Console": return "console";
+            case "Superscript": return "superscript";
+            case "Subscript": return "subscript";
+            case "MenuLeft": return "menu-left";
+            case "MenuRight": return "menu-right";
+            case "MenuDown": return "menu-down";
+            default: return "menu-up";}
+      }());
+   };
+   var glyphicon = function (icon) {
+      return A2($Html.span,
+      _U.list([$Html$Attributes.classList(_U.list([{ctor: "_Tuple2",_0: "glyphicon",_1: true},{ctor: "_Tuple2",_0: glyphiconClass(icon),_1: true}]))]),
+      _U.list([]));
+   };
+   var MenuUp = {ctor: "MenuUp"};
+   var MenuDown = {ctor: "MenuDown"};
+   var MenuRight = {ctor: "MenuRight"};
+   var MenuLeft = {ctor: "MenuLeft"};
+   var Subscript = {ctor: "Subscript"};
+   var Superscript = {ctor: "Superscript"};
+   var Console = {ctor: "Console"};
+   var TriangleTop = {ctor: "TriangleTop"};
+   var TriangleBottom = {ctor: "TriangleBottom"};
+   var TriangleLeft = {ctor: "TriangleLeft"};
+   var TriangleRight = {ctor: "TriangleRight"};
+   var ObjectAlignRight = {ctor: "ObjectAlignRight"};
+   var ObjectAlignVertical = {ctor: "ObjectAlignVertical"};
+   var ObjectAlignLeft = {ctor: "ObjectAlignLeft"};
+   var ObjectAlignHorizontal = {ctor: "ObjectAlignHorizontal"};
+   var ObjectAlignBottom = {ctor: "ObjectAlignBottom"};
+   var ObjectAlignTop = {ctor: "ObjectAlignTop"};
+   var TextBackground = {ctor: "TextBackground"};
+   var TextColor = {ctor: "TextColor"};
+   var TextSize = {ctor: "TextSize"};
+   var Sunglasses = {ctor: "Sunglasses"};
+   var Grain = {ctor: "Grain"};
+   var Oil = {ctor: "Oil"};
+   var ModalWindow = {ctor: "ModalWindow"};
+   var MenuHamburger = {ctor: "MenuHamburger"};
+   var OptionVertical = {ctor: "OptionVertical"};
+   var OptionHorizontal = {ctor: "OptionHorizontal"};
+   var Education = {ctor: "Education"};
+   var IceLollyTasted = {ctor: "IceLollyTasted"};
+   var IceLolly = {ctor: "IceLolly"};
+   var Scale = {ctor: "Scale"};
+   var Rub = {ctor: "Rub"};
+   var Ruble = {ctor: "Ruble"};
+   var Jpy = {ctor: "Jpy"};
+   var Yen = {ctor: "Yen"};
+   var Xbt = {ctor: "Xbt"};
+   var Btc = {ctor: "Btc"};
+   var Bitcoin = {ctor: "Bitcoin"};
+   var Scissors = {ctor: "Scissors"};
+   var PiggyBank = {ctor: "PiggyBank"};
+   var Duplicate = {ctor: "Duplicate"};
+   var Lamp = {ctor: "Lamp"};
+   var Hourglass = {ctor: "Hourglass"};
+   var Erase = {ctor: "Erase"};
+   var Apple = {ctor: "Apple"};
+   var Bed = {ctor: "Bed"};
+   var Blackboard = {ctor: "Blackboard"};
+   var Tent = {ctor: "Tent"};
+   var BabyFormula = {ctor: "BabyFormula"};
+   var Knight = {ctor: "Knight"};
+   var Bishop = {ctor: "Bishop"};
+   var Pawn = {ctor: "Pawn"};
+   var Queen = {ctor: "Queen"};
+   var King = {ctor: "King"};
+   var Equalizer = {ctor: "Equalizer"};
+   var Alert = {ctor: "Alert"};
+   var Paste = {ctor: "Paste"};
+   var Copy = {ctor: "Copy"};
+   var LevelUp = {ctor: "LevelUp"};
+   var OpenFile = {ctor: "OpenFile"};
+   var SaveFile = {ctor: "SaveFile"};
+   var Cd = {ctor: "Cd"};
+   var TreeDeciduous = {ctor: "TreeDeciduous"};
+   var TreeConifer = {ctor: "TreeConifer"};
+   var CloudUpload = {ctor: "CloudUpload"};
+   var CloudDownload = {ctor: "CloudDownload"};
+   var RegistrationMark = {ctor: "RegistrationMark"};
+   var CopyrightMark = {ctor: "CopyrightMark"};
+   var Sound71 = {ctor: "Sound71"};
+   var Sound61 = {ctor: "Sound61"};
+   var Sound51 = {ctor: "Sound51"};
+   var SoundDolby = {ctor: "SoundDolby"};
+   var SoundStereo = {ctor: "SoundStereo"};
+   var Subtitles = {ctor: "Subtitles"};
+   var HdVideo = {ctor: "HdVideo"};
+   var SdVideo = {ctor: "SdVideo"};
+   var Stats = {ctor: "Stats"};
+   var Tower = {ctor: "Tower"};
+   var PhoneAlt = {ctor: "PhoneAlt"};
+   var Earphone = {ctor: "Earphone"};
+   var Compressed = {ctor: "Compressed"};
+   var Header = {ctor: "Header"};
+   var Cutlery = {ctor: "Cutlery"};
+   var Transfer = {ctor: "Transfer"};
+   var CreditCard = {ctor: "CreditCard"};
+   var FloppyOpen = {ctor: "FloppyOpen"};
+   var FloppySave = {ctor: "FloppySave"};
+   var FloppyRemove = {ctor: "FloppyRemove"};
+   var FloppySaved = {ctor: "FloppySaved"};
+   var FloppyDisk = {ctor: "FloppyDisk"};
+   var Send = {ctor: "Send"};
+   var Export = {ctor: "Export"};
+   var Import = {ctor: "Import"};
+   var Saved = {ctor: "Saved"};
+   var Open = {ctor: "Open"};
+   var Save = {ctor: "Save"};
+   var Record = {ctor: "Record"};
+   var NewWindow = {ctor: "NewWindow"};
+   var LogOut = {ctor: "LogOut"};
+   var Flash = {ctor: "Flash"};
+   var LogIn = {ctor: "LogIn"};
+   var CollapseUp = {ctor: "CollapseUp"};
+   var CollapseDown = {ctor: "CollapseDown"};
+   var Expand = {ctor: "Expand"};
+   var Unchecked = {ctor: "Unchecked"};
+   var SortByAttributesAlt = {ctor: "SortByAttributesAlt"};
+   var SortByAttributes = {ctor: "SortByAttributes"};
+   var SortByOrderAlt = {ctor: "SortByOrderAlt"};
+   var SortByOrder = {ctor: "SortByOrder"};
+   var SortByAlphabetAlt = {ctor: "SortByAlphabetAlt"};
+   var SortByAlphabet = {ctor: "SortByAlphabet"};
+   var Sort = {ctor: "Sort"};
+   var Gbp = {ctor: "Gbp"};
+   var Usd = {ctor: "Usd"};
+   var Pushpin = {ctor: "Pushpin"};
+   var Phone = {ctor: "Phone"};
+   var Link = {ctor: "Link"};
+   var HeartEmpty = {ctor: "HeartEmpty"};
+   var Paperclip = {ctor: "Paperclip"};
+   var Dashboard = {ctor: "Dashboard"};
+   var Fullscreen = {ctor: "Fullscreen"};
+   var Briefcase = {ctor: "Briefcase"};
+   var Filter = {ctor: "Filter"};
+   var Tasks = {ctor: "Tasks"};
+   var Wrench = {ctor: "Wrench"};
+   var Globe = {ctor: "Globe"};
+   var CircleArrowDown = {ctor: "CircleArrowDown"};
+   var CircleArrowUp = {ctor: "CircleArrowUp"};
+   var CircleArrowLeft = {ctor: "CircleArrowLeft"};
+   var CircleArrowRight = {ctor: "CircleArrowRight"};
+   var HandDown = {ctor: "HandDown"};
+   var HandUp = {ctor: "HandUp"};
+   var HandLeft = {ctor: "HandLeft"};
+   var HandRight = {ctor: "HandRight"};
+   var ThumbsDown = {ctor: "ThumbsDown"};
+   var ThumbsUp = {ctor: "ThumbsUp"};
+   var Certificate = {ctor: "Certificate"};
+   var Bell = {ctor: "Bell"};
+   var Bullhorn = {ctor: "Bullhorn"};
+   var Hdd = {ctor: "Hdd"};
+   var ResizeHorizontal = {ctor: "ResizeHorizontal"};
+   var ResizeVertical = {ctor: "ResizeVertical"};
+   var FolderOpen = {ctor: "FolderOpen"};
+   var FolderClose = {ctor: "FolderClose"};
+   var ShoppingCart = {ctor: "ShoppingCart"};
+   var Retweet = {ctor: "Retweet"};
+   var ChevronDown = {ctor: "ChevronDown"};
+   var ChevronUp = {ctor: "ChevronUp"};
+   var Magnet = {ctor: "Magnet"};
+   var Comment = {ctor: "Comment"};
+   var Random = {ctor: "Random"};
+   var Calendar = {ctor: "Calendar"};
+   var Plane = {ctor: "Plane"};
+   var WarningSign = {ctor: "WarningSign"};
+   var EyeClose = {ctor: "EyeClose"};
+   var EyeOpen = {ctor: "EyeOpen"};
+   var Fire = {ctor: "Fire"};
+   var Leaf = {ctor: "Leaf"};
+   var Gift = {ctor: "Gift"};
+   var ExclamationSign = {ctor: "ExclamationSign"};
+   var ResizeSmall = {ctor: "ResizeSmall"};
+   var ResizeFull = {ctor: "ResizeFull"};
+   var ShareAlt = {ctor: "ShareAlt"};
+   var ArrowDown = {ctor: "ArrowDown"};
+   var ArrowUp = {ctor: "ArrowUp"};
+   var ArrowRight = {ctor: "ArrowRight"};
+   var ArrowLeft = {ctor: "ArrowLeft"};
+   var BanCircle = {ctor: "BanCircle"};
+   var OkCircle = {ctor: "OkCircle"};
+   var RemoveCircle = {ctor: "RemoveCircle"};
+   var Screenshot = {ctor: "Screenshot"};
+   var InfoSign = {ctor: "InfoSign"};
+   var QuestionSign = {ctor: "QuestionSign"};
+   var OkSign = {ctor: "OkSign"};
+   var RemoveSign = {ctor: "RemoveSign"};
+   var MinusSign = {ctor: "MinusSign"};
+   var PlusSign = {ctor: "PlusSign"};
+   var ChevronRight = {ctor: "ChevronRight"};
+   var ChevronLeft = {ctor: "ChevronLeft"};
+   var Eject = {ctor: "Eject"};
+   var StepForward = {ctor: "StepForward"};
+   var FastForward = {ctor: "FastForward"};
+   var Forward = {ctor: "Forward"};
+   var Stop = {ctor: "Stop"};
+   var Pause = {ctor: "Pause"};
+   var Play = {ctor: "Play"};
+   var Backward = {ctor: "Backward"};
+   var FastBackward = {ctor: "FastBackward"};
+   var StepBackward = {ctor: "StepBackward"};
+   var Move = {ctor: "Move"};
+   var Check = {ctor: "Check"};
+   var Share = {ctor: "Share"};
+   var Edit = {ctor: "Edit"};
+   var Tint = {ctor: "Tint"};
+   var Adjust = {ctor: "Adjust"};
+   var MapMarker = {ctor: "MapMarker"};
+   var Picture = {ctor: "Picture"};
+   var FacetimeVideo = {ctor: "FacetimeVideo"};
+   var IndentRight = {ctor: "IndentRight"};
+   var IndentLeft = {ctor: "IndentLeft"};
+   var List = {ctor: "List"};
+   var AlignJustify = {ctor: "AlignJustify"};
+   var AlignRight = {ctor: "AlignRight"};
+   var AlignCenter = {ctor: "AlignCenter"};
+   var AlignLeft = {ctor: "AlignLeft"};
+   var TextWidth = {ctor: "TextWidth"};
+   var TextHeight = {ctor: "TextHeight"};
+   var Italic = {ctor: "Italic"};
+   var Bold = {ctor: "Bold"};
+   var Font = {ctor: "Font"};
+   var Camera = {ctor: "Camera"};
+   var Print = {ctor: "Print"};
+   var Bookmark = {ctor: "Bookmark"};
+   var Book = {ctor: "Book"};
+   var Tags = {ctor: "Tags"};
+   var Tag = {ctor: "Tag"};
+   var Barcode = {ctor: "Barcode"};
+   var Qrcode = {ctor: "Qrcode"};
+   var VolumeUp = {ctor: "VolumeUp"};
+   var VolumeDown = {ctor: "VolumeDown"};
+   var VolumeOff = {ctor: "VolumeOff"};
+   var Headphones = {ctor: "Headphones"};
+   var Flag = {ctor: "Flag"};
+   var Lock = {ctor: "Lock"};
+   var ListAlt = {ctor: "ListAlt"};
+   var Refresh = {ctor: "Refresh"};
+   var Repeat = {ctor: "Repeat"};
+   var PlayCircle = {ctor: "PlayCircle"};
+   var Inbox = {ctor: "Inbox"};
+   var Upload = {ctor: "Upload"};
+   var Download = {ctor: "Download"};
+   var DownloadAlt = {ctor: "DownloadAlt"};
+   var Road = {ctor: "Road"};
+   var Time = {ctor: "Time"};
+   var File = {ctor: "File"};
+   var Home = {ctor: "Home"};
+   var Trash = {ctor: "Trash"};
+   var Cog = {ctor: "Cog"};
+   var Signal = {ctor: "Signal"};
+   var Off = {ctor: "Off"};
+   var ZoomOut = {ctor: "ZoomOut"};
+   var ZoomIn = {ctor: "ZoomIn"};
+   var Remove = {ctor: "Remove"};
+   var Ok = {ctor: "Ok"};
+   var ThList = {ctor: "ThList"};
+   var Th = {ctor: "Th"};
+   var ThLarge = {ctor: "ThLarge"};
+   var Film = {ctor: "Film"};
+   var User = {ctor: "User"};
+   var StarEmpty = {ctor: "StarEmpty"};
+   var Star = {ctor: "Star"};
+   var Heart = {ctor: "Heart"};
+   var Search = {ctor: "Search"};
+   var Music = {ctor: "Music"};
+   var Glass = {ctor: "Glass"};
+   var Pencil = {ctor: "Pencil"};
+   var Envelope = {ctor: "Envelope"};
+   var Cloud = {ctor: "Cloud"};
+   var Minus = {ctor: "Minus"};
+   var Eur = {ctor: "Eur"};
+   var Euro = {ctor: "Euro"};
+   var Plus = {ctor: "Plus"};
+   var Asterisk = {ctor: "Asterisk"};
+   return _elm.Exts.Html.Bootstrap.Glyphicons.values = {_op: _op
+                                                       ,glyphicon: glyphicon
+                                                       ,Asterisk: Asterisk
+                                                       ,Plus: Plus
+                                                       ,Euro: Euro
+                                                       ,Eur: Eur
+                                                       ,Minus: Minus
+                                                       ,Cloud: Cloud
+                                                       ,Envelope: Envelope
+                                                       ,Pencil: Pencil
+                                                       ,Glass: Glass
+                                                       ,Music: Music
+                                                       ,Search: Search
+                                                       ,Heart: Heart
+                                                       ,Star: Star
+                                                       ,StarEmpty: StarEmpty
+                                                       ,User: User
+                                                       ,Film: Film
+                                                       ,ThLarge: ThLarge
+                                                       ,Th: Th
+                                                       ,ThList: ThList
+                                                       ,Ok: Ok
+                                                       ,Remove: Remove
+                                                       ,ZoomIn: ZoomIn
+                                                       ,ZoomOut: ZoomOut
+                                                       ,Off: Off
+                                                       ,Signal: Signal
+                                                       ,Cog: Cog
+                                                       ,Trash: Trash
+                                                       ,Home: Home
+                                                       ,File: File
+                                                       ,Time: Time
+                                                       ,Road: Road
+                                                       ,DownloadAlt: DownloadAlt
+                                                       ,Download: Download
+                                                       ,Upload: Upload
+                                                       ,Inbox: Inbox
+                                                       ,PlayCircle: PlayCircle
+                                                       ,Repeat: Repeat
+                                                       ,Refresh: Refresh
+                                                       ,ListAlt: ListAlt
+                                                       ,Lock: Lock
+                                                       ,Flag: Flag
+                                                       ,Headphones: Headphones
+                                                       ,VolumeOff: VolumeOff
+                                                       ,VolumeDown: VolumeDown
+                                                       ,VolumeUp: VolumeUp
+                                                       ,Qrcode: Qrcode
+                                                       ,Barcode: Barcode
+                                                       ,Tag: Tag
+                                                       ,Tags: Tags
+                                                       ,Book: Book
+                                                       ,Bookmark: Bookmark
+                                                       ,Print: Print
+                                                       ,Camera: Camera
+                                                       ,Font: Font
+                                                       ,Bold: Bold
+                                                       ,Italic: Italic
+                                                       ,TextHeight: TextHeight
+                                                       ,TextWidth: TextWidth
+                                                       ,AlignLeft: AlignLeft
+                                                       ,AlignCenter: AlignCenter
+                                                       ,AlignRight: AlignRight
+                                                       ,AlignJustify: AlignJustify
+                                                       ,List: List
+                                                       ,IndentLeft: IndentLeft
+                                                       ,IndentRight: IndentRight
+                                                       ,FacetimeVideo: FacetimeVideo
+                                                       ,Picture: Picture
+                                                       ,MapMarker: MapMarker
+                                                       ,Adjust: Adjust
+                                                       ,Tint: Tint
+                                                       ,Edit: Edit
+                                                       ,Share: Share
+                                                       ,Check: Check
+                                                       ,Move: Move
+                                                       ,StepBackward: StepBackward
+                                                       ,FastBackward: FastBackward
+                                                       ,Backward: Backward
+                                                       ,Play: Play
+                                                       ,Pause: Pause
+                                                       ,Stop: Stop
+                                                       ,Forward: Forward
+                                                       ,FastForward: FastForward
+                                                       ,StepForward: StepForward
+                                                       ,Eject: Eject
+                                                       ,ChevronLeft: ChevronLeft
+                                                       ,ChevronRight: ChevronRight
+                                                       ,PlusSign: PlusSign
+                                                       ,MinusSign: MinusSign
+                                                       ,RemoveSign: RemoveSign
+                                                       ,OkSign: OkSign
+                                                       ,QuestionSign: QuestionSign
+                                                       ,InfoSign: InfoSign
+                                                       ,Screenshot: Screenshot
+                                                       ,RemoveCircle: RemoveCircle
+                                                       ,OkCircle: OkCircle
+                                                       ,BanCircle: BanCircle
+                                                       ,ArrowLeft: ArrowLeft
+                                                       ,ArrowRight: ArrowRight
+                                                       ,ArrowUp: ArrowUp
+                                                       ,ArrowDown: ArrowDown
+                                                       ,ShareAlt: ShareAlt
+                                                       ,ResizeFull: ResizeFull
+                                                       ,ResizeSmall: ResizeSmall
+                                                       ,ExclamationSign: ExclamationSign
+                                                       ,Gift: Gift
+                                                       ,Leaf: Leaf
+                                                       ,Fire: Fire
+                                                       ,EyeOpen: EyeOpen
+                                                       ,EyeClose: EyeClose
+                                                       ,WarningSign: WarningSign
+                                                       ,Plane: Plane
+                                                       ,Calendar: Calendar
+                                                       ,Random: Random
+                                                       ,Comment: Comment
+                                                       ,Magnet: Magnet
+                                                       ,ChevronUp: ChevronUp
+                                                       ,ChevronDown: ChevronDown
+                                                       ,Retweet: Retweet
+                                                       ,ShoppingCart: ShoppingCart
+                                                       ,FolderClose: FolderClose
+                                                       ,FolderOpen: FolderOpen
+                                                       ,ResizeVertical: ResizeVertical
+                                                       ,ResizeHorizontal: ResizeHorizontal
+                                                       ,Hdd: Hdd
+                                                       ,Bullhorn: Bullhorn
+                                                       ,Bell: Bell
+                                                       ,Certificate: Certificate
+                                                       ,ThumbsUp: ThumbsUp
+                                                       ,ThumbsDown: ThumbsDown
+                                                       ,HandRight: HandRight
+                                                       ,HandLeft: HandLeft
+                                                       ,HandUp: HandUp
+                                                       ,HandDown: HandDown
+                                                       ,CircleArrowRight: CircleArrowRight
+                                                       ,CircleArrowLeft: CircleArrowLeft
+                                                       ,CircleArrowUp: CircleArrowUp
+                                                       ,CircleArrowDown: CircleArrowDown
+                                                       ,Globe: Globe
+                                                       ,Wrench: Wrench
+                                                       ,Tasks: Tasks
+                                                       ,Filter: Filter
+                                                       ,Briefcase: Briefcase
+                                                       ,Fullscreen: Fullscreen
+                                                       ,Dashboard: Dashboard
+                                                       ,Paperclip: Paperclip
+                                                       ,HeartEmpty: HeartEmpty
+                                                       ,Link: Link
+                                                       ,Phone: Phone
+                                                       ,Pushpin: Pushpin
+                                                       ,Usd: Usd
+                                                       ,Gbp: Gbp
+                                                       ,Sort: Sort
+                                                       ,SortByAlphabet: SortByAlphabet
+                                                       ,SortByAlphabetAlt: SortByAlphabetAlt
+                                                       ,SortByOrder: SortByOrder
+                                                       ,SortByOrderAlt: SortByOrderAlt
+                                                       ,SortByAttributes: SortByAttributes
+                                                       ,SortByAttributesAlt: SortByAttributesAlt
+                                                       ,Unchecked: Unchecked
+                                                       ,Expand: Expand
+                                                       ,CollapseDown: CollapseDown
+                                                       ,CollapseUp: CollapseUp
+                                                       ,LogIn: LogIn
+                                                       ,Flash: Flash
+                                                       ,LogOut: LogOut
+                                                       ,NewWindow: NewWindow
+                                                       ,Record: Record
+                                                       ,Save: Save
+                                                       ,Open: Open
+                                                       ,Saved: Saved
+                                                       ,Import: Import
+                                                       ,Export: Export
+                                                       ,Send: Send
+                                                       ,FloppyDisk: FloppyDisk
+                                                       ,FloppySaved: FloppySaved
+                                                       ,FloppyRemove: FloppyRemove
+                                                       ,FloppySave: FloppySave
+                                                       ,FloppyOpen: FloppyOpen
+                                                       ,CreditCard: CreditCard
+                                                       ,Transfer: Transfer
+                                                       ,Cutlery: Cutlery
+                                                       ,Header: Header
+                                                       ,Compressed: Compressed
+                                                       ,Earphone: Earphone
+                                                       ,PhoneAlt: PhoneAlt
+                                                       ,Tower: Tower
+                                                       ,Stats: Stats
+                                                       ,SdVideo: SdVideo
+                                                       ,HdVideo: HdVideo
+                                                       ,Subtitles: Subtitles
+                                                       ,SoundStereo: SoundStereo
+                                                       ,SoundDolby: SoundDolby
+                                                       ,Sound51: Sound51
+                                                       ,Sound61: Sound61
+                                                       ,Sound71: Sound71
+                                                       ,CopyrightMark: CopyrightMark
+                                                       ,RegistrationMark: RegistrationMark
+                                                       ,CloudDownload: CloudDownload
+                                                       ,CloudUpload: CloudUpload
+                                                       ,TreeConifer: TreeConifer
+                                                       ,TreeDeciduous: TreeDeciduous
+                                                       ,Cd: Cd
+                                                       ,SaveFile: SaveFile
+                                                       ,OpenFile: OpenFile
+                                                       ,LevelUp: LevelUp
+                                                       ,Copy: Copy
+                                                       ,Paste: Paste
+                                                       ,Alert: Alert
+                                                       ,Equalizer: Equalizer
+                                                       ,King: King
+                                                       ,Queen: Queen
+                                                       ,Pawn: Pawn
+                                                       ,Bishop: Bishop
+                                                       ,Knight: Knight
+                                                       ,BabyFormula: BabyFormula
+                                                       ,Tent: Tent
+                                                       ,Blackboard: Blackboard
+                                                       ,Bed: Bed
+                                                       ,Apple: Apple
+                                                       ,Erase: Erase
+                                                       ,Hourglass: Hourglass
+                                                       ,Lamp: Lamp
+                                                       ,Duplicate: Duplicate
+                                                       ,PiggyBank: PiggyBank
+                                                       ,Scissors: Scissors
+                                                       ,Bitcoin: Bitcoin
+                                                       ,Btc: Btc
+                                                       ,Xbt: Xbt
+                                                       ,Yen: Yen
+                                                       ,Jpy: Jpy
+                                                       ,Ruble: Ruble
+                                                       ,Rub: Rub
+                                                       ,Scale: Scale
+                                                       ,IceLolly: IceLolly
+                                                       ,IceLollyTasted: IceLollyTasted
+                                                       ,Education: Education
+                                                       ,OptionHorizontal: OptionHorizontal
+                                                       ,OptionVertical: OptionVertical
+                                                       ,MenuHamburger: MenuHamburger
+                                                       ,ModalWindow: ModalWindow
+                                                       ,Oil: Oil
+                                                       ,Grain: Grain
+                                                       ,Sunglasses: Sunglasses
+                                                       ,TextSize: TextSize
+                                                       ,TextColor: TextColor
+                                                       ,TextBackground: TextBackground
+                                                       ,ObjectAlignTop: ObjectAlignTop
+                                                       ,ObjectAlignBottom: ObjectAlignBottom
+                                                       ,ObjectAlignHorizontal: ObjectAlignHorizontal
+                                                       ,ObjectAlignLeft: ObjectAlignLeft
+                                                       ,ObjectAlignVertical: ObjectAlignVertical
+                                                       ,ObjectAlignRight: ObjectAlignRight
+                                                       ,TriangleRight: TriangleRight
+                                                       ,TriangleLeft: TriangleLeft
+                                                       ,TriangleBottom: TriangleBottom
+                                                       ,TriangleTop: TriangleTop
+                                                       ,Console: Console
+                                                       ,Superscript: Superscript
+                                                       ,Subscript: Subscript
+                                                       ,MenuLeft: MenuLeft
+                                                       ,MenuRight: MenuRight
+                                                       ,MenuDown: MenuDown
+                                                       ,MenuUp: MenuUp};
+};

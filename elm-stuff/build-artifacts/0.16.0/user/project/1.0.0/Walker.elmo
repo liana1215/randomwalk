@@ -1,0 +1,251 @@
+Elm.Walker = Elm.Walker || {};
+Elm.Walker.make = function (_elm) {
+   "use strict";
+   _elm.Walker = _elm.Walker || {};
+   if (_elm.Walker.values) return _elm.Walker.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Color = Elm.Color.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Graphics$Collage = Elm.Graphics.Collage.make(_elm),
+   $Graphics$Element = Elm.Graphics.Element.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Random = Elm.Random.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Text = Elm.Text.make(_elm),
+   $Time = Elm.Time.make(_elm),
+   $Window = Elm.Window.make(_elm);
+   var _op = {};
+   var bar = F3(function (_p0,n,color) {
+      var _p1 = _p0;
+      var _p2 = _p1._1;
+      return A2($Graphics$Element.flow,
+      $Graphics$Element.right,
+      _U.list([A2($Graphics$Element.opacity,
+              0.5,
+              A3($Graphics$Collage.collage,
+              n,
+              _p2 / 20 | 0,
+              _U.list([A2($Graphics$Collage.filled,color,A2($Graphics$Collage.rect,$Basics.toFloat(n),$Basics.toFloat(_p2 / 20 | 0)))])))
+              ,$Graphics$Element.show(n)]));
+   });
+   var barGraph = F2(function (_p3,model) {
+      var _p4 = _p3;
+      var _p6 = _p4._0;
+      var _p5 = _p4._1;
+      return A4($Graphics$Element.container,
+      _p6,
+      _p5 / 10 | 0,
+      $Graphics$Element.midLeft,
+      A3(bar,{ctor: "_Tuple2",_0: _p6,_1: _p5},model.empiricalMean,$Color.lightRed));
+   });
+   var walker = function (model) {
+      return _U.eq(model.test,false) ? $Graphics$Collage.group(_U.list([A2($Graphics$Collage.filled,$Color.black,$Graphics$Collage.circle(5))
+                                                                       ,A2($Graphics$Collage.filled,
+                                                                       $Color.lightRed,
+                                                                       $Graphics$Collage.circle(4))])) : $Graphics$Collage.toForm(A3($Graphics$Element.image,
+      40,
+      40,
+      "http://liana1215.github.io/assets/img/daruma.png"));
+   };
+   var clock = $Time.every($Time.millisecond);
+   var genStep = function (s) {
+      var _p7 = A2($Random.generate,A2($Random.$float,0,1),s);
+      var step = _p7._0;
+      var seed = _p7._1;
+      return _U.cmp(step,0.5) > 0 ? {ctor: "_Tuple2",_0: {ctor: "_Tuple2",_0: 1,_1: 0},_1: seed} : {ctor: "_Tuple2"
+                                                                                                   ,_0: {ctor: "_Tuple2",_0: -1,_1: 0}
+                                                                                                   ,_1: seed};
+   };
+   var update = F2(function (action,model) {
+      var _p8 = action;
+      switch (_p8.ctor)
+      {case "NoOp": return model;
+         case "StepMove": var _p9 = _p8._0;
+           var dx = _p9._0;
+           var dy = _p9._1;
+           var point = model.point;
+           if (_U.eq(model.test,false)) if (_U.eq(point.x,0)) return _U.cmp(dx,0) < 0 ? _U.update(model,
+                 {point: {x: point.x,y: point.y},counter: model.counter + 1}) : _U.update(model,
+                 {point: {x: point.x + dx,y: point.y},counter: model.counter + 1}); else if (_U.eq(point.x,model.n)) if (_U.cmp(model.trials,0) > 0) {
+                          var newResults = A2($Basics._op["++"],model.results,_U.list([model.counter]));
+                          var tempSum = $List.sum(newResults);
+                          var mean = tempSum / $List.length(newResults) | 0;
+                          return _U.update(model,
+                          {point: {x: model.i,y: 0}
+                          ,counter: 0
+                          ,test: false
+                          ,results: A2($Basics._op["++"],model.results,_U.list([model.counter]))
+                          ,trials: model.trials - 1
+                          ,empiricalMean: mean});
+                       } else return _U.update(model,{test: true}); else return _U.update(model,
+                    {point: {x: point.x + dx,y: point.y},counter: model.counter + 1}); else return model;
+         default: var _p10 = _p8._0;
+           return _U.update(model,
+           {point: {x: _p10.i,y: 0},n: _p10.n,trials: _p10.trials,i: _p10.i,counter: 0,test: false,results: _U.list([]),empiricalMean: 0});}
+   });
+   var resultStyle = function (_p11) {
+      var _p12 = _p11;
+      return {typeface: _U.list(["serif","Times New Roman"])
+             ,height: $Maybe.Just($Basics.toFloat(_p12._0 / 5 | 0))
+             ,color: $Color.lightCharcoal
+             ,bold: true
+             ,italic: false
+             ,line: $Maybe.Nothing};
+   };
+   var outputStyle = function (_p13) {
+      var _p14 = _p13;
+      return {typeface: _U.list(["serif","Times New Roman"])
+             ,height: $Maybe.Just($Basics.toFloat(_p14._0 / 20 | 0))
+             ,color: $Color.blue
+             ,bold: true
+             ,italic: true
+             ,line: $Maybe.Nothing};
+   };
+   var empirical = F2(function (_p15,model) {
+      var _p16 = _p15;
+      var _p18 = _p16._0;
+      var _p17 = _p16._1;
+      return A2($Graphics$Element.flow,
+      $Graphics$Element.down,
+      _U.list([$Graphics$Element.centered(A2($Text.style,outputStyle({ctor: "_Tuple2",_0: _p18,_1: _p17}),$Text.fromString("Empirical")))
+              ,A4($Graphics$Element.container,
+              _p18 / 3 | 0,
+              _p17 / 4 | 0,
+              $Graphics$Element.middle,
+              $Graphics$Element.centered(A2($Text.style,
+              resultStyle({ctor: "_Tuple2",_0: _p18,_1: _p17}),
+              $Text.fromString($Basics.toString(model.empiricalMean)))))]));
+   });
+   var analytical = F2(function (_p19,model) {
+      var _p20 = _p19;
+      var _p22 = _p20._0;
+      var _p21 = _p20._1;
+      var analyticalMean = model.n + model.n * model.n - model.i - model.i * model.i;
+      return A2($Graphics$Element.flow,
+      $Graphics$Element.down,
+      _U.list([$Graphics$Element.centered(A2($Text.style,outputStyle({ctor: "_Tuple2",_0: _p22,_1: _p21}),$Text.fromString("Analytical")))
+              ,A4($Graphics$Element.container,
+              _p22 / 3 | 0,
+              _p21 / 4 | 0,
+              $Graphics$Element.middle,
+              $Graphics$Element.centered(A2($Text.style,
+              resultStyle({ctor: "_Tuple2",_0: _p22,_1: _p21}),
+              $Text.fromString($Basics.toString(analyticalMean)))))]));
+   });
+   var bodyStyle = function (_p23) {
+      var _p24 = _p23;
+      return {typeface: _U.list(["serif","Times New Roman"])
+             ,height: $Maybe.Just($Basics.toFloat(_p24._0 / 25 | 0))
+             ,color: $Color.lightCharcoal
+             ,bold: true
+             ,italic: false
+             ,line: $Maybe.Nothing};
+   };
+   var frame = function (_p25) {
+      var _p26 = _p25;
+      var _p28 = _p26._0;
+      var _p27 = _p26._1;
+      return $Graphics$Collage.group(_U.list([A2($Graphics$Collage.traced,
+                                             $Graphics$Collage.dashed($Color.charcoal),
+                                             A2($Graphics$Collage.segment,
+                                             {ctor: "_Tuple2",_0: 0,_1: 0},
+                                             {ctor: "_Tuple2",_0: $Basics.toFloat(_p28 / 3 | 0),_1: 0}))
+                                             ,A2($Graphics$Collage.move,
+                                             {ctor: "_Tuple2",_0: $Basics.toFloat((0 - _p28) / 6 | 0),_1: 0},
+                                             A2($Graphics$Collage.filled,
+                                             $Color.grey,
+                                             A2($Graphics$Collage.rect,$Basics.toFloat(_p28 / 3 | 0),$Basics.toFloat(_p27 / 10 | 0))))
+                                             ,A2($Graphics$Collage.move,
+                                             {ctor: "_Tuple2",_0: $Basics.toFloat((0 - _p28) / 6 | 0),_1: $Basics.toFloat(_p27 / 80 | 0)},
+                                             $Graphics$Collage.text(A2($Text.style,
+                                             bodyStyle({ctor: "_Tuple2",_0: _p28,_1: _p27}),
+                                             $Text.fromString("Counter"))))]));
+   };
+   var view = F2(function (_p29,model) {
+      var _p30 = _p29;
+      var _p32 = _p30._0;
+      var _p31 = _p30._1;
+      var point = model.point;
+      return A3($Graphics$Collage.collage,
+      _p32,
+      _p31,
+      _U.list([A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat((0 - _p32) / 6 | 0),_1: $Basics.toFloat(_p31 / 4 | 0)},
+              $Graphics$Collage.toForm(A2(empirical,{ctor: "_Tuple2",_0: _p32,_1: _p31},model)))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p32 / 5 | 0),_1: $Basics.toFloat(_p31 / 4 | 0)},
+              $Graphics$Collage.toForm(A2(analytical,{ctor: "_Tuple2",_0: _p32,_1: _p31},model)))
+              ,A2($Graphics$Collage.move,{ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(_p31 / 10 | 0)},frame({ctor: "_Tuple2",_0: _p32,_1: _p31}))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(point.x),_1: $Basics.toFloat(point.y) + $Basics.toFloat(_p31 / 10 | 0)},
+              walker(model))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat((0 - _p32) / 20 | 0),_1: $Basics.toFloat(_p31 / 10 | 0)},
+              $Graphics$Collage.toForm($Graphics$Element.show(model.counter)))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p32 / 2 | 0),_1: $Basics.toFloat(_p31 / 10 | 0)},
+              $Graphics$Collage.toForm(A2(barGraph,{ctor: "_Tuple2",_0: _p32,_1: _p31},model)))]));
+   });
+   var initModel = {point: {x: 0,y: 0},n: 10,trials: 100,i: 5,counter: 0,test: false,results: _U.list([]),empiricalMean: 0};
+   var seed0 = $Random.initialSeed(31415);
+   var UpdateInput = function (a) {    return {ctor: "UpdateInput",_0: a};};
+   var StepMove = function (a) {    return {ctor: "StepMove",_0: a};};
+   var randomWalkSeed = A2($Signal.map,
+   function (_p33) {
+      var _p34 = _p33;
+      return {ctor: "_Tuple2",_0: StepMove(_p34._0),_1: _p34._1};
+   },
+   A3($Signal.foldp,
+   F2(function (clock,_p35) {    var _p36 = _p35;return genStep(_p36._1);}),
+   {ctor: "_Tuple2",_0: {ctor: "_Tuple2",_0: 0,_1: 0},_1: seed0},
+   clock));
+   var randomWalk = A2($Signal.map,$Basics.fst,randomWalkSeed);
+   var NoOp = {ctor: "NoOp"};
+   var UserInputs = F3(function (a,b,c) {    return {n: a,trials: b,i: c};});
+   var Model = F8(function (a,b,c,d,e,f,g,h) {    return {point: a,n: b,trials: c,i: d,counter: e,test: f,results: g,empiricalMean: h};});
+   var Point = F2(function (a,b) {    return {x: a,y: b};});
+   var inputs = Elm.Native.Port.make(_elm).inboundSignal("inputs",
+   "Walker.UserInputs",
+   function (v) {
+      return typeof v === "object" && "n" in v && "trials" in v && "i" in v ? {_: {}
+                                                                              ,n: typeof v.n === "number" && isFinite(v.n) && Math.floor(v.n) === v.n ? v.n : _U.badPort("an integer",
+                                                                              v.n)
+                                                                              ,trials: typeof v.trials === "number" && isFinite(v.trials) && Math.floor(v.trials) === v.trials ? v.trials : _U.badPort("an integer",
+                                                                              v.trials)
+                                                                              ,i: typeof v.i === "number" && isFinite(v.i) && Math.floor(v.i) === v.i ? v.i : _U.badPort("an integer",
+                                                                              v.i)} : _U.badPort("an object with fields `n`, `trials`, `i`",v);
+   });
+   var updateInputs = A2($Signal.map,UpdateInput,inputs);
+   var actions = A2($Signal.merge,updateInputs,randomWalk);
+   var main = A3($Signal.map2,view,$Window.dimensions,A3($Signal.foldp,update,initModel,actions));
+   return _elm.Walker.values = {_op: _op
+                               ,Point: Point
+                               ,Model: Model
+                               ,UserInputs: UserInputs
+                               ,NoOp: NoOp
+                               ,StepMove: StepMove
+                               ,UpdateInput: UpdateInput
+                               ,seed0: seed0
+                               ,initModel: initModel
+                               ,bodyStyle: bodyStyle
+                               ,outputStyle: outputStyle
+                               ,resultStyle: resultStyle
+                               ,update: update
+                               ,genStep: genStep
+                               ,clock: clock
+                               ,randomWalkSeed: randomWalkSeed
+                               ,randomWalk: randomWalk
+                               ,updateInputs: updateInputs
+                               ,actions: actions
+                               ,walker: walker
+                               ,frame: frame
+                               ,bar: bar
+                               ,barGraph: barGraph
+                               ,empirical: empirical
+                               ,analytical: analytical
+                               ,view: view
+                               ,main: main};
+};

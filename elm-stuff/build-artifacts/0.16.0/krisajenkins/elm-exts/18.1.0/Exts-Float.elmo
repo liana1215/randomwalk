@@ -1,0 +1,25 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Float = Elm.Exts.Float || {};
+Elm.Exts.Float.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Float = _elm.Exts.Float || {};
+   if (_elm.Exts.Float.values) return _elm.Exts.Float.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var roundTo = function (places) {
+      var factor = Math.pow(10,places);
+      return function (_p0) {
+         return function (n) {
+            return n / factor;
+         }($Basics.toFloat($Basics.round(A2(F2(function (x,y) {    return x * y;}),factor,_p0))));
+      };
+   };
+   return _elm.Exts.Float.values = {_op: _op,roundTo: roundTo};
+};

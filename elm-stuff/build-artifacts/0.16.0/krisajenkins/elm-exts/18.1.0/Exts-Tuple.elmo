@@ -1,0 +1,23 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Tuple = Elm.Exts.Tuple || {};
+Elm.Exts.Tuple.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Tuple = _elm.Exts.Tuple || {};
+   if (_elm.Exts.Tuple.values) return _elm.Exts.Tuple.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var fork = F3(function (fX,fY,v) {    return {ctor: "_Tuple2",_0: fX(v),_1: fY(v)};});
+   var pair = F3(function (fX,fY,_p0) {    var _p1 = _p0;return {ctor: "_Tuple2",_0: fX(_p1._0),_1: fY(_p1._1)};});
+   var both = F2(function (f,_p2) {    var _p3 = _p2;return {ctor: "_Tuple2",_0: f(_p3._0),_1: f(_p3._1)};});
+   var second = F2(function (f,_p4) {    var _p5 = _p4;return {ctor: "_Tuple2",_0: _p5._0,_1: f(_p5._1)};});
+   var first = F2(function (f,_p6) {    var _p7 = _p6;return {ctor: "_Tuple2",_0: f(_p7._0),_1: _p7._1};});
+   var indexedPair = F2(function (f,x) {    return {ctor: "_Tuple2",_0: f(x),_1: x};});
+   return _elm.Exts.Tuple.values = {_op: _op,indexedPair: indexedPair,first: first,second: second,both: both,pair: pair,fork: fork};
+};

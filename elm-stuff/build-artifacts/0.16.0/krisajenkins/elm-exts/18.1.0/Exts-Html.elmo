@@ -1,0 +1,36 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Html = Elm.Exts.Html || {};
+Elm.Exts.Html.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Html = _elm.Exts.Html || {};
+   if (_elm.Exts.Html.values) return _elm.Exts.Html.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Exts$List = Elm.Exts.List.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Regex = Elm.Regex.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm);
+   var _op = {};
+   var matchText = F3(function (attributes,search,string) {
+      var sliceSegments = F2(function (_p1,_p0) {
+         var _p2 = _p1;
+         var _p3 = _p0;
+         return A2($Html.span,_p2._1 ? attributes : _U.list([]),_U.list([$Html.text(A3($String.slice,_p2._0,_p3._0,string))]));
+      });
+      var matchStringEnd = _U.list([{ctor: "_Tuple2",_0: $String.length(string),_1: false}]);
+      var matchStringStart = _U.list([{ctor: "_Tuple2",_0: 0,_1: false}]);
+      var matchBoundaries = function (place) {
+         return _U.list([{ctor: "_Tuple2",_0: place.index,_1: true},{ctor: "_Tuple2",_0: place.index + $String.length(place.match),_1: false}]);
+      };
+      var matches = A3($Regex.find,$Regex.All,search,string);
+      var allSegmentBoundaries = A2($Basics._op["++"],matchStringStart,A2($Basics._op["++"],A2($List.concatMap,matchBoundaries,matches),matchStringEnd));
+      return A3($List.map2,sliceSegments,allSegmentBoundaries,$Exts$List.rest(allSegmentBoundaries));
+   });
+   return _elm.Exts.Html.values = {_op: _op,matchText: matchText};
+};

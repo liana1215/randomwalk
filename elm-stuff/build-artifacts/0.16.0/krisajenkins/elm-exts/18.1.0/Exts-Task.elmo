@@ -1,0 +1,20 @@
+Elm.Exts = Elm.Exts || {};
+Elm.Exts.Task = Elm.Exts.Task || {};
+Elm.Exts.Task.make = function (_elm) {
+   "use strict";
+   _elm.Exts = _elm.Exts || {};
+   _elm.Exts.Task = _elm.Exts.Task || {};
+   if (_elm.Exts.Task.values) return _elm.Exts.Task.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Effects = Elm.Effects.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Task = Elm.Task.make(_elm);
+   var _op = {};
+   var asEffect = function (_p0) {    return $Effects.task($Task.toResult(_p0));};
+   return _elm.Exts.Task.values = {_op: _op,asEffect: asEffect};
+};
